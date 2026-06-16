@@ -1,0 +1,6 @@
+sources:
+  - name: "DBT_AADITYA"
+    tables:
+      - name: "ORDERS"
+      - name: "cust"
+      - name: "SOMETABLE"
