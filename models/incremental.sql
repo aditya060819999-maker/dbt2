@@ -10,7 +10,7 @@ select
     amount,
     order_datetime,
     '{{ invocation_id }}' as dbt_invocation_id
-from {{ source('src', 'sometable') }}
+from {{ source('DBT_AADITYA', 'SOMETABLE') }}
 
 {% if is_incremental() %}
 where order_datetime >
