@@ -1,1 +1,1 @@
-select * from {{source("1source" ,"pil_raw" )})
+select * from {{source("1source" ,"pil_raw" )}}
