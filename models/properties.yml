@@ -1,5 +1,4 @@
 version: 2
-
 sources:
   - name: 1source  #internalname 
     database: DEMO_DATABASE
@@ -8,31 +7,27 @@ sources:
       - name: ORDERS
       - name: cust
       - name: SOMETABLE
-
       - name: pil_raw
-        description: "Raw staging table for person information logs."
-        columns:
-          - name: id
-            tests:
-              - unique
-              - not_null
-
-          - name: namer
-            tests:
-              - not_null
-
-          - name: age
-            tests:
-              - not_null
-
-          - name: email
-            tests:
-              - not_null
-
-          - name: phone
-            tests:
-              - not_null
-
-          - name: gender
-            tests:
-              - not_null
+      - name: marketing
+       
+models:
+    - name: pil_raw   #internal name
+      columns:
+        - name: id
+          tests:
+            - unique
+            - not_null
+        - name: gender
+          tests:
+            - accepted_values:
+                arguments:
+                  values: ['Male' ,'Female']     
+    - name: pil_rawbkup
+      columns:
+        - name: id
+          tests:
+            - relationships:
+                arguments:
+                  to: ref('pil_raw')
+                  field: id 
+            

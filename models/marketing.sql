@@ -1,0 +1,1 @@
+select * from {{source("1source" , "marketing")}}
