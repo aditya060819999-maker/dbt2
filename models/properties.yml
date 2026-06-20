@@ -1,33 +1,38 @@
 version: 2
-sources:
-  - name: 1source  #internalname 
+
+sources: 
+  - name: source_2 
     database: DEMO_DATABASE
     schema: DBT_AADITYA
     tables:
-      - name: ORDERS
       - name: cust
+      - name: orders
       - name: SOMETABLE
-      - name: pil_raw
+
+  - name: 1source  
+    database: DEMO_DATABASE
+    schema: RAW
+    tables:
+      - name: PIL_RAW
       - name: marketing
        
 models:
-    - name: pil_raw   #internal name
-      columns:
-        - name: id
-          tests:
-            - unique
-            - not_null
-        - name: gender
-          tests:
-            - accepted_values:
-                arguments:
-                  values: ['Male' ,'Female']     
-    - name: pil_rawbkup
-      columns:
-        - name: id
-          tests:
-            - relationships:
-                arguments:
-                  to: ref('pil_raw')
-                  field: id 
-            
+  - name: pil_raw   # 1. Changed to lowercase to match your filename pil_raw.sql
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: gender
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Male' ,'Female']     
+  - name: pil_rawbkup
+    columns:
+      - name: id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('pil_raw')  # 2. Changed to lowercase to match the model name above
+                field: id
