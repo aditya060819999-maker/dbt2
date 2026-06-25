@@ -17,7 +17,7 @@ sources:
       - name: marketing
        
 models:
-  - name: pil_raw   # 1. Changed to lowercase to match your filename pil_raw.sql
+  - name: pil_raw   
     columns:
       - name: id
         tests:
@@ -34,5 +34,16 @@ models:
         tests:
           - relationships:
               arguments:
-                to: ref('pil_raw')  # 2. Changed to lowercase to match the model name above
+                to: ref('pil_raw')  
                 field: id
+  - name: marketing
+    columns:
+      - name: sales
+        tests:
+          - new_test
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:  # Indented with 14 spaces
+                min_value: 0  # Indented with 16 spaces to nest inside arguments
+                max_value: 5000000
+                
+
